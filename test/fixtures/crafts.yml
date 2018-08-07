@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  craft_type: MyString
+  level: MyString
+  price: 1.5
+  date: 2018-08-07
+  start_time: MyString
+  end_time: MyString
+  venue: MyString
+  description: MyString
+  inclusive: MyString
+  phone: MyString
+  host_name: MyString
+  city: MyString
+
+two:
+  title: MyString
+  craft_type: MyString
+  level: MyString
+  price: 1.5
+  date: 2018-08-07
+  start_time: MyString
+  end_time: MyString
+  venue: MyString
+  description: MyString
+  inclusive: MyString
+  phone: MyString
+  host_name: MyString
+  city: MyString
