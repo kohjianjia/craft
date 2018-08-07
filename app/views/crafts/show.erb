@@ -45,4 +45,6 @@
 </h4>
 
 <%= link_to 'All workshops', crafts_path %>
-<%= link_to 'Edit workshop', edit_craft_path(@craft) %>
+<% if @craft.user.id == current_user.id %>
+	<%= link_to 'Edit workshop', edit_craft_path(@craft) %>
+<% end %>

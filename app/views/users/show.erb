@@ -1,0 +1,14 @@
+<h2>Profile of <%= @user.username %></h2>
+
+<h3>Email: <%= @user.email %></h3>
+
+<h3>Workshops hosted</h3>
+<% i = 1 %>
+<% @user.crafts.order("date DESC").each do |workshop| %>
+	<h4>
+		<%= i.to_s %>.
+		<a href="/crafts/<%= workshop.id %>"><%= workshop.title %></a>
+		<br />
+		<% i += 1 %>
+	</h4>
+<% end %>
