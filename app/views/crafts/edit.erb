@@ -1,0 +1,90 @@
+<h2>Edit Workshop</h2>
+
+<%= form_with scope: :craft, method: :patch, url: craft_path, local: true do |f| %>
+
+	<h4>
+		<%= f.label :name_of_instructor %>:
+		<%= f.text_field :host_name, :required => true %>
+	</h4>
+
+	<h4>
+		<%= f.label :workshop_title %>:
+		<%= f.text_field :title, :required => true %>
+	</h4>
+
+	<h4>
+		<%= f.label :type %>:
+		<%= f.text_field :craft_type, placeholder: "eg. embroidery", :required => true %>
+	</h4>
+
+	<h4>
+		<%= f.label :skill_level %>:
+		<%= f.radio_button :level, "beginner", style: "margin-left: 0.7vw;" %>
+		Beginner
+		<%= f.radio_button :level, "intermediate", style: "margin-left: 0.7vw;" %>
+		Intermediate
+		<%= f.radio_button :level, "advanced", style: "margin-left: 0.7vw;" %>
+		Advanced
+	</h4>
+
+	<h4>
+		<%= f.label :price_per_person %>:
+		RM<%= f.text_field :price, style:"margin-left: 3px;", :required => true %>
+	</h4>
+
+	<h4>
+		<%= f.label :maximum_number_of_participants %>:
+		<%= f.text_field :max_participant, :required => true %>
+	</h4>
+
+	<h4>
+		<%= f.label :date %>:
+		<%= f.text_field :date, :required => true %>
+	</h4>
+
+	<h4>
+		<%= f.label :start_time %>:
+		<%= f.text_field :start_time, :required => true %>
+	</h4>
+
+	<h4>
+		<%= f.label :end_time %>:
+		<%= f.text_field :end_time, :required => true %>
+	</h4>
+
+	<h4>
+		<%= f.label :city %>:
+		<%= f.text_field :city, :required => true %>
+	</h4>
+
+	<h4>
+		<%= f.label :venue %>:
+		<br />
+		<%= f.text_area :venue, :required => true %>
+	</h4>
+
+	<h4>
+		<%= f.label :description %>:
+		<br />
+		<%= f.text_area :description, :required => true %>
+	</h4>
+
+	<h4>
+		<%= f.label :what_is_included %>:
+		<br />
+		<%= f.text_area :inclusive, :required => true %>
+	</h4>
+
+	<h4>
+		Contact details:
+		<br />
+		<%= f.label :phone_number %>
+		<%= f.text_field :phone, style:"margin-left: 3px;",:required => true %>
+	</h4>
+
+
+	<div style="margin-top: 3vh;">
+		<%= f.submit "Save changes" %>
+	</div>
+
+<% end %>

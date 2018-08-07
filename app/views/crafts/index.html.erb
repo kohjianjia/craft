@@ -1,2 +1,23 @@
-<h1>Crafts#index</h1>
-<p>Find me in app/views/crafts/index.html.erb</p>
+<h2>All Workshops</h2>
+
+<table>
+	<tr>
+		<th>Title</th>
+		<th>City</th>
+		<th>Type</th>
+		<th>Date</th>
+		<th>Description</th>
+	</tr>
+	<% @crafts.each do |craft| %>
+		<tr>
+			<td><%= craft.title %> |</td>
+			<td><%= craft.city %> |</td>
+			<td><%= craft.craft_type %> |</td>
+			<td><%= craft.date %> |</td>
+			<td><%= truncate(craft.description, length: 50) %> |</td>
+			<td><%= link_to 'More details', craft_path(craft) %> |</td>
+			<td><%= link_to 'Edit', edit_craft_path(craft) %> |</td>
+			<td><%= link_to 'Delete', craft_path(craft), method: :delete, data: {confirm: "Are you sure you want to delete this workshop?"} %></td>
+		</tr>
+	<% end %>
+</table>

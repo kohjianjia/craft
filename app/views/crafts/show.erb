@@ -1,0 +1,48 @@
+<h4>
+	Title: <%= @craft.title %>
+</h4>
+
+<h4>
+	Type: <%= @craft.craft_type %>
+</h4>
+
+<h4>
+	Instructor: <%= @craft.host_name %>
+</h4>
+
+<h4>
+	Level: <%= @craft.level %>
+</h4>
+
+<h4>
+	<%= @craft.description %>
+</h4>
+
+<h4>
+	Price: RM<%= @craft.price %> per person
+</h4>
+
+<h4>
+	What does it include? 
+	<br/ >
+	<%= @craft.inclusive %>
+</h4>
+
+<h4>
+	Date: <%= @craft.date %>
+</h4>
+
+<h4>
+	Time: <%= @craft.start_time %> to <%= @craft.end_time %>
+</h4>
+
+<h4>
+	Venue: <%= @craft.venue %>
+</h4>
+
+<h4>
+	To book or for more information, please contact <%= @craft.host_name %> through phone <%= @craft.phone %> or email <a href="mailto:<%= @craft.user.email %>"><%= @craft.user.email %></a>.
+</h4>
+
+<%= link_to 'All workshops', crafts_path %>
+<%= link_to 'Edit workshop', edit_craft_path(@craft) %>
