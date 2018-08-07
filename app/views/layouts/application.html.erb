@@ -18,7 +18,11 @@
     <% end %>
 
     <% if current_user %>
-      Hello, <%= current_user.username %>!
+      Hello, <a href="/users/<%= current_user.id %>"><%= current_user.username %></a>!
+      <% if current_user.admin? %>
+        <%= link_to 'All users', users_path %>
+      <% end %>
+      <%= link_to 'Host a workshop!', new_craft_path %>
       <%= link_to 'Sign Out', session_path('id'), method: :delete %>
     <% else %>
       <%= link_to 'Sign Up', sign_up_path %>

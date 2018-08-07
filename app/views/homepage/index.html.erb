@@ -2,4 +2,11 @@
 <p>Find me in app/views/homepage/index.html.erb</p>
 
 <%= link_to 'All workshops', crafts_path %>
-<%= link_to 'Host a workshop!', new_craft_path %>
+
+<% @crafts.limit(9).each do |workshop| %>
+	<h5>
+		<%= workshop.craft_type %>
+		<%= workshop.date %>, <%= workshop.start_time %>
+		<%= workshop.title %>
+	</h5>
+<% end %>
