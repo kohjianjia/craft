@@ -1,0 +1,19 @@
+<h2>Sign In</h2>
+
+<!-- use form_tag because we are obtaining somthing from the database and not saving anything -->
+<%= form_tag sessions_path do %>
+
+	<h3>
+		Username:
+		<%= text_field_tag :username, nil, placeholder: 'Insert your Username' %>
+	</h3>
+
+	<h3>
+		Password:
+		<%= password_field_tag :password, nil, placeholder: 'Insert Password' %>
+	</h3>
+
+	<%= submit_tag 'Sign In' %>
+
+<% end %>
+

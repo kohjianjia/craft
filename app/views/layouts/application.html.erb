@@ -10,6 +10,21 @@
   </head>
 
   <body>
+
+    <% if current_user %>
+      <%= link_to 'CraftWorkshop', homepage_path %>
+    <% else %>
+      <%= link_to 'CraftWorkshop', root_path %>
+    <% end %>
+
+    <% if current_user %>
+      Hello, <%= current_user.username %>!
+      <%= link_to 'Sign Out', session_path('id'), method: :delete %>
+    <% else %>
+      <%= link_to 'Sign Up', sign_up_path %>
+      <%= link_to 'Sign In', sign_in_path %>
+    <% end %>
+    
     <%= yield %>
   </body>
 </html>
