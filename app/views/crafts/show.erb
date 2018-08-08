@@ -45,6 +45,7 @@
 </h4>
 
 <%= link_to 'All workshops', crafts_path %>
-<% if @craft.user.id == current_user.id %>
+<% if @craft.user.id == current_user.id || current_user.admin? %>
 	<%= link_to 'Edit workshop', edit_craft_path(@craft) %>
+	<%= link_to 'Delete', craft_path(@craft), method: :delete, data: {confirm: "Are you sure you want to delete this workshop?"} %>
 <% end %>

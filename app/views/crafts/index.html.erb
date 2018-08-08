@@ -1,25 +1,46 @@
-<h2>All Workshops</h2>
+<style>
+	/* effect-shine */
+	a.effect-shine:hover {
+	  -webkit-mask-image: linear-gradient(-75deg, rgba(0,0,0,.6) 30%, #000 50%, rgba(0,0,0,.6) 70%);
+	  -webkit-mask-size: 200%;
+	  animation: shine 2s infinite;
+	}
 
-<table>
-	<tr>
-		<th>Title</th>
-		<th>City</th>
-		<th>Type</th>
-		<th>Date</th>
-		<th>Description</th>
-	</tr>
-	<% @crafts.each do |craft| %>
-		<tr>
-			<td><a href="/crafts/<%= craft.id %>"><%= craft.title %></a></td>
-			<td><%= craft.city %></td>
-			<td><%= craft.craft_type %></td>
-			<td><%= craft.date %></td>
-			<td><%= truncate(craft.description, length: 50) %></td>
-			<td><%= link_to 'More details', craft_path(craft) %></td>
-			<% if craft.user.id == current_user.id %>
-				<td><%= link_to 'Edit', edit_craft_path(craft) %></td>
-				<td><%= link_to 'Delete', craft_path(craft), method: :delete, data: {confirm: "Are you sure you want to delete this workshop?"} %></td>
-			<% end %>
-		</tr>
-	<% end %>
-</table>
+	@-webkit-keyframes shine {
+	  from {
+	    -webkit-mask-position: 150%;
+	  }
+	  
+	  to {
+	    -webkit-mask-position: -50%;
+	  }
+	}
+
+</style>
+
+<div class="container-fluid" >
+
+	<h2 class="text-center">All Workshops</h2>
+
+	<div class="row">
+		<% @crafts.order("date DESC").each do |craft| %>
+			<div class="col-12 col-sm-12 col-md-12 col-lg-4 mt-2 mb-4">
+				<div class="card shadow-lg">
+					<div class="card-body text-center">
+						<p class="card-text"><small class="text-muted"><%= craft.date %>, <%= craft.start_time %> to <%= craft.end_time %></small></p>
+						<h5 class="card-title"><a class="text-dark effect-shine text-uppercase" style="text-decoration: none;" href="/crafts/<%= craft.id %>"><strong><%= craft.title %></a></strong></h5>
+						<p class="card-text"><small class="text-muted text-uppercase"><%= craft.craft_type %></small></p>
+					</div>
+					<img class="card-img-top" src="https://acpknighttimes.com/wp-content/uploads/2017/08/Art.jpg" alt="Card image cap">
+					<div class="card-body text-center">
+						<i class="fa fa-map-marker" aria-hidden="true"></i>
+						<p class="card-text"><small class="text-muted text-uppercase">LOCATION: <%= craft.city %></small></p>
+						<p class="card-text" style="font-family: cursive;"><i><%= truncate(craft.description, length: 100) %></i></p>
+						<p class="card-text"><small class="text-muted"><strong><%= link_to "MORE DETAILS", craft_path(craft), class:"text-dark effect-shine", style:"text-decoration: none;" %></strong></small></p>
+					</div>
+				</div>
+			</div>
+		<% end %>
+	</div>
+
+</div>

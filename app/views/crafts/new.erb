@@ -1,92 +1,118 @@
-<h2>Host a Workshop!</h2>
+<div class="container-fluid" style="padding-bottom: 2%; padding-left: 2%; padding-right: 2%;">
 
-<%= form_with scope: :craft, url: crafts_path, local: true do |f| %>
+	<h2 class="text-center">Host a Workshop!</h2>
 
-	<h4>
-		<%= f.label :name_of_instructor %>:
-		<%= f.text_field :host_name, :required => true %>
-	</h4>
+	<%= form_with scope: :craft, url: crafts_path, local: true do |f| %>
+		<form>
+			<div class="form-group row"> 
+				<%= f.label :name_of_instructor, class:"col-sm-2 col-form-label" %>
+				<div class="col-sm-10">
+					<%= f.text_field :host_name, :required => true, class:"form-control" %>
+				</div>
+			</div>
 
-	<h4>
-		<%= f.label :workshop_title %>:
-		<%= f.text_field :title, :required => true %>
-	</h4>
+			<div class="form-group row"> 
+				<%= f.label :workshop_title, class:"col-sm-2 col-form-label" %>
+				<div class="col-sm-10">
+					<%= f.text_field :title, :required => true, class:"form-control" %>
+				</div>
+			</div>
 
-	<h4>
-		<%= f.label :type %>:
-		<%= f.text_field :craft_type, placeholder: "eg. embroidery", :required => true %>
-	</h4>
+			<div class="form-group row"> 
+				<%= f.label :type, class:"col-sm-2 col-form-label" %>
+				<div class="col-sm-10">
+					<%= f.text_field :craft_type, placeholder: "eg. embroidery", :required => true, class:"form-control" %>
+				</div>
+			</div>  
 
-	<h4>
-		<%= f.label :skill_level %>:
-		<%= f.radio_button :level, "beginner", style: "margin-left: 0.7vw;" %>
-		Beginner
-		<%= f.radio_button :level, "intermediate", style: "margin-left: 0.7vw;" %>
-		Intermediate
-		<%= f.radio_button :level, "advanced", style: "margin-left: 0.7vw;" %>
-		Advanced
-	</h4>
+			<div class="form-group row">
+				<%= f.label :skill_level, class:"col-sm-2 col-form-label" %>
+				<div class="form-check form-check-inline"> 
+					<%= f.radio_button :level, "beginner", class:"form-check-input", type:"radio", id:"inlineRadio1" %>
+					<label class="form-check-label" for="inlineRadio1">Beginner</label>
+				</div>
+				<div class="form-check form-check-inline"> 
+					<%= f.radio_button :level, "intermediate", class:"form-check-input", type:"radio", id:"inlineRadio2" %>
+					<label class="form-check-label" for="inlineRadio1">Intermediate</label>
+				</div>
+				<div class="form-check form-check-inline">
+					<%= f.radio_button :level, "advanced", class:"form-check-input", type:"radio", id:"inlineRadio3" %>
+					<label class="form-check-label" for="inlineRadio1">Advanced</label>
+				</div>
+			</div>
 
-	<h4>
-		<%= f.label :price_per_person %>:
-		RM<%= f.text_field :price, style:"margin-left: 3px;", :required => true %>
-	</h4>
+			<div class="form-group row"> 
+				<%= f.label :price_per_person, class:"col-sm-2 col-form-label" %>
+				<div class="col-sm-10">
+					<%= f.text_field :price, :required => true, class:"form-control" %>
+				</div>
+			</div>
 
-	<h4>
-		<%= f.label :maximum_number_of_participants %>:
-		<%= f.text_field :max_participant, :required => true %>
-	</h4>
+			<div class="form-group row"> 
+				<%= f.label :maximum_number_of_participants, class:"col-sm-2 col-form-label" %>
+				<div class="col-sm-10">
+					<%= f.text_field :max_participant, :required => true, class:"form-control" %>
+				</div>
+			</div> 
 
-	<h4>
-		<%= f.label :date %>:
-		<%= f.text_field :date, :required => true %>
-	</h4>
+			<div class="form-group row"> 
+				<%= f.label :date, class:"col-sm-2 col-form-label" %>
+				<div class="col-sm-10">
+					<%= f.text_field :date, :required => true, class:"form-control" %>
+				</div>
+			</div> 
 
-	<h4>
-		<%= f.label :start_time %>:
-		<%= f.text_field :start_time, :required => true %>
-	</h4>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="inputEmail4">Start time</label>
+					<%= f.text_field :start_time, :required => true, class:"form-control", placeholder:"eg. 10am" %> 
+				</div>
+				<div class="form-group col-md-6">
+					<label for="inputPassword4">End time</label>
+					<%= f.text_field :end_time, :required => true, class:"form-control", placeholder:"eg. 2pm" %> 
+				</div>
+			</div>
 
-	<h4>
-		<%= f.label :end_time %>:
-		<%= f.text_field :end_time, :required => true %>
-	</h4>
+			<div class="form-group row"> 
+				<%= f.label :city, class:"col-sm-2 col-form-label" %>
+				<div class="col-sm-10">
+					<%= f.text_field :city, placeholder: "eg. Kuala Lumpur", :required => true, class:"form-control" %>
+				</div>
+			</div> 
 
-	<h4>
-		<%= f.label :city %>:
-		<%= f.text_field :city, :required => true %>
-	</h4>
+			<div class="form-group">
+				<%= f.label :address %>
+				<br />
+				<%= f.text_area :venue, :required => true, class:"form-control", id:"exampleFormControlTextarea1", rows:"3"  %>
+			</div>
 
-	<h4>
-		<%= f.label :venue %>:
-		<br />
-		<%= f.text_area :venue, :required => true %>
-	</h4>
+			<div class="form-group">
+				<%= f.label :description %>
+				<br />
+				<%= f.text_area :description, :required => true, class:"form-control", id:"exampleFormControlTextarea1", rows:"3"  %>
+			</div>
 
-	<h4>
-		<%= f.label :description %>:
-		<br />
-		<%= f.text_area :description, :required => true %>
-	</h4>
+			<div class="form-group">
+				<%= f.label :what_is_included %>
+				<br />
+				<%= f.text_area :inclusive, :required => true, class:"form-control", id:"exampleFormControlTextarea1", rows:"3"  %>
+			</div> 
 
-	<h4>
-		<%= f.label :what_is_included %>:
-		<br />
-		<%= f.text_area :inclusive, :required => true %>
-	</h4>
+			<div class="form-group row"> 
+				<%= f.label :phone_number, class:"col-sm-2 col-form-label" %>
+				<div class="col-sm-10">
+					<%= f.text_field :phone, :required => true, class:"form-control" %>
+				</div>
+			</div>
 
-	<h4>
-		Contact details:
-		<br />
-		<%= f.label :phone_number %>
-		<%= f.text_field :phone, style:"margin-left: 3px;",:required => true %>
-	</h4>
+			<div style="margin-top: 3vh;">
+				<%= f.submit "Create workshop!", class:"btn-sm btn-outline-dark" %>
+			</div>
 
-	<div style="margin-top: 3vh;">
-		<%= f.submit "Create workshop!" %>
-	</div>
+		<% end %>
+	</form>
+</div>
 
-<% end %>
 
 
 
