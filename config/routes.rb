@@ -1,16 +1,20 @@
 Rails.application.routes.draw do
 
-  resources :sessions, controller: "sessions", only: [:create, :destroy]
-  get "/sign_in" => "sessions#new", as: "sign_in"
+	resources :crafts do
+		collection do
+			get :search # creates a new path for searches
+		end
+	end
 
-  get "/homepage" => "homepage#index"
+	resources :sessions, controller: "sessions", only: [:create, :destroy]
+	get "/sign_in" => "sessions#new", as: "sign_in"
 
-  resources :crafts
+	get "/homepage" => "homepage#index"
 
-  resources :users, controller: "users", only: [:create, :edit, :update, :show, :index] 
-  
-  get "/sign_up" => "users#new", as: "sign_up"
+	resources :users, controller: "users", only: [:create, :edit, :update, :show, :index] 
 
-  root 'welcome#index'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+	get "/sign_up" => "users#new", as: "sign_up"
+
+	root 'welcome#index'
+	# For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

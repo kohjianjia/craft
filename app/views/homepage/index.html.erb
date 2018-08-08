@@ -23,7 +23,7 @@
 	<% @crafts.order("date DESC").limit(7).each do |workshop| %>
 		<div class="card mb-4" style="border: none;">
 			<div class="card-body text-center" style="background-color: #f9f9f9;">
-				<p class="card-text"><small class="text-muted"><%= workshop.date %>, <%= workshop.start_time %> to <%= workshop.end_time %></small></p>
+				<p class="card-text"><small class="text-muted"><%= workshop.date %> • <%= workshop.start_time %> to <%= workshop.end_time %></small></p>
 				<h5 class="card-title"><a class="text-dark effect-shine text-uppercase" style="text-decoration: none;" href="/crafts/<%= workshop.id %>"><strong><%= workshop.title %></a></strong></h5>
 				<p class="card-text text-uppercase"><small class="text-muted"><%= workshop.craft_type %></small></p>
 			</div>
