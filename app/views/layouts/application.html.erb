@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Assessment</title>
+    <title>CRAFTER</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -14,7 +14,7 @@
     <nav class="navbar sticky-top navbar-expand-lg navbar-light" style="background-color: #fff; padding:1.5%; border-bottom: #f9f9f9;">
       <div class="container">
         <% if current_user %>
-          <a class="navbar-brand" href="/homepage"><strong>CRAFTER</strong></a>
+          <a class="navbar-brand effect-shine" href="/homepage"><strong>CRAFTER</strong></a>
         <% else %>
           <a class="navbar-brand" href="/">CRAFTER</a>
         <% end %>
@@ -69,16 +69,16 @@
               </div>
             </li>  -->
           </ul>
+          <!-- search bar starts here -->
           <div class="form-inline my-2 my-lg-0">
-            <%= form_tag search_crafts_path, method: :get do %>
-              <%= text_field_tag :search, nil, placeholder:"Search", class:"form-control mr-sm-2", style:"height: 32px;" %> 
+
+
+            <%= form_with url: search_crafts_path, method: :get, id: "workshop_search", local:true do |f| %>
+              <input name="find_word" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="height: 32px;" id="find_word"> 
               <button class="btn btn-outline-secondary my-2 my-sm-0 fa fa-search" type="submit"></button>
             <% end %>
-          </div>
-          <!-- <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" style="height: 32px;" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-secondary my-2 my-sm-0 fa fa-search" type="submit"></button>
-          </form> -->
+          </div> 
+          <!-- end of search bar -->
         </div>
       </div>
     </nav>
@@ -93,3 +93,4 @@
     <%= yield %>
   </body>
 </html>
+

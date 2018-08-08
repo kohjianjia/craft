@@ -1,51 +1,63 @@
-<h4>
-	Title: <%= @craft.title %>
-</h4>
+<div class="container-fluid" >
+	<div class="card mb-4" style="border: none;">
+		<div class="card-body text-center">
+			<h5 class="card-title text-dark text-uppercase">
+				<strong><%= @craft.title %></strong>
+				<% if @craft.availability == false %>
+					<img src="https://www.thedoggurus.com/wp-content/uploads/2016/05/UhOh-png-web.png" style="height: 21px; width: 40px;">
+				<% end %>
+			</h5>
+			<h6 class="card-text"><span id="<%= @craft.id %>"></span></small></h6>
+			<% if @craft.user.id == current_user.id || current_user.admin? %>
+				<h6>
+					<%= form_with scope: :craft, method: :patch, url: craft_path, remote: true do |f| %>
+						<form>
+							<div class="form-check form-check-inline">
+								<%= f.radio_button :availability, "false", class:"form-check-input", type:"radio", id:"inlineRadio1" %>
+								<label class="form-check-label" for="inlineRadio1">True</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<%= f.radio_button :availability, "true", class:"form-check-input", type:"radio", id:"inlineRadio2" %> 
+								<label class="form-check-label" for="inlineRadio1">False</label>
+							</div>
+							<%= f.submit "This workshop is fully booked!!", class:"btn-sm btn-outline-dark", id:"submit_availability" %>
+						</form>
+					<% end %>
+				</h6>
+			<% end %>
+			<h6 class="card-text text-uppercase"><small>Instructed by <%= @craft.host_name %></small></h6>
+		</div>
+		<img class="card-img-bottom" src="https://acpknighttimes.com/wp-content/uploads/2017/08/Art.jpg" alt="Card image cap">
+		<div class="card-body text-center">
+			<h6><%= @craft.description %></h6>
+		</div>
+		<hr />
+		<div class="card-body">
+			<h6 class="card-text">Category: <%= @craft.craft_type %></h6>
+			<h6 class="card-text">Level: <%= @craft.level %></h6>
+			<h6 class="card-text">Date: <%= @craft.date.strftime("%d/%m/%Y") %></h6>
+			<h6 class="card-text">Time: <%= @craft.start_time %> to <%= @craft.end_time %></h6>
+			<h6 class="card-text">Venue: <%= @craft.venue %></h6>
+			<h6 class="card-text">Price: RM<%= @craft.price.round(0) %> per person</h6>
+			<h6 class="card-text">What does it include?</h6>
+			<h6 class="card-text"><%= @craft.inclusive %></h6>
+		</div>
+		<hr />
+		<div class="card-body text-center">
+			<h6 class="card-text">
+				To book or for more information, please contact <%= @craft.host_name %> through phone <%= @craft.phone %> or email <a href="mailto:<%= @craft.user.email %>"><%= @craft.user.email %></a>.
+			</h6>
+		</div>
+		<div class="text-center">
+			<% if @craft.user.id == current_user.id || current_user.admin? %>
+				<%= link_to 'Edit workshop', edit_craft_path(@craft), class:"btn btn-outline-dark btn-sm" %>
+			<% end %>
+		</div>
+	</div>
 
-<h4>
-	Type: <%= @craft.craft_type %>
-</h4>
+	<hr />
 
-<h4>
-	Instructor: <%= @craft.host_name %>
-</h4>
-
-<h4>
-	Level: <%= @craft.level %>
-</h4>
-
-<h4>
-	<%= @craft.description %>
-</h4>
-
-<h4>
-	Price: RM<%= @craft.price %> per person
-</h4>
-
-<h4>
-	What does it include? 
-	<br/ >
-	<%= @craft.inclusive %>
-</h4>
-
-<h4>
-	Date: <%= @craft.date %>
-</h4>
-
-<h4>
-	Time: <%= @craft.start_time %> to <%= @craft.end_time %>
-</h4>
-
-<h4>
-	Venue: <%= @craft.venue %>
-</h4>
-
-<h4>
-	To book or for more information, please contact <%= @craft.host_name %> through phone <%= @craft.phone %> or email <a href="mailto:<%= @craft.user.email %>"><%= @craft.user.email %></a>.
-</h4>
-
-<%= link_to 'All workshops', crafts_path %>
-<% if @craft.user.id == current_user.id || current_user.admin? %>
-	<%= link_to 'Edit workshop', edit_craft_path(@craft) %>
-	<%= link_to 'Delete', craft_path(@craft), method: :delete, data: {confirm: "Are you sure you want to delete this workshop?"} %>
-<% end %>
+	<div class="text-center mt-4 mb-4">
+		<%= link_to 'ALL WORKSHOPS', crafts_path, class:"btn btn-outline-dark btn-sm" %>
+	</div>
+</div>

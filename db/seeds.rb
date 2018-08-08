@@ -28,13 +28,13 @@ uids = []
 User.all.each { |u| uids << u.id }
 
 ActiveRecord::Base.transaction do
-  40.times do 
+  50.times do 
     craft['title'] = Faker::App.name
     craft['host_name'] = Faker::Name.name
     craft['craft_type'] = ["Embroidery", "Macrame", "Knitting", "Crochet", "Leather crafting", "Batik", "Origami", "Bookbinding", "Calligraphy", "Wood carving"].sample
     craft['level'] = ["Beginner", "Intermediate", "Advanced"].sample
     craft['price'] = rand(100.00..1000.00)
-    craft['date'] = ["18th August 2018", "19th August 2018", "25th August 2018", "26th August 2018", "1st September 2018", "2nd September 2018", "8th September 2018"].sample
+    craft['date'] = ["18th August 2018", "19th August 2018", "25th August 2018", "26th August 2018", "1st September 2018", "2nd September 2018", "8th September 2018", "9th September 2018"].sample
     craft['start_time'] = ["11am"].sample
     craft['end_time'] = ["4pm"].sample
     craft['city'] = ["Kuala Lumpur", "Labuan", "Putrajaya", "Johor", "Kedah", "Kelantan", "Melaka", "Negeri Sembilan", "Pahang", "Penang", "Perak", "Perlis", "Sabah", "Sarawak", "Selangor", "Terengganu"].sample
