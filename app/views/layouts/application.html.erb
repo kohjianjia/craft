@@ -69,13 +69,26 @@
               </div>
             </li>  -->
           </ul>
-          <form class="form-inline my-2 my-lg-0">
+          <div class="form-inline my-2 my-lg-0">
+            <%= form_tag search_crafts_path, method: :get do %>
+              <%= text_field_tag :search, nil, placeholder:"Search", class:"form-control mr-sm-2", style:"height: 32px;" %> 
+              <button class="btn btn-outline-secondary my-2 my-sm-0 fa fa-search" type="submit"></button>
+            <% end %>
+          </div>
+          <!-- <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" style="height: 32px;" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-secondary my-2 my-sm-0 fa fa-search" type="submit"></button>
-          </form>
+          </form> -->
         </div>
       </div>
     </nav>
+
+    <!-- flash will show on top of each page, unless this is removed (then self specification is required) -->
+    <div id="flash">
+      <% flash.each do |key, value| -%>
+        <div class="alert alert-info" id="flash_<%= key %>"><%=h value %></div>
+      <% end %>
+    </div>
     
     <%= yield %>
   </body>

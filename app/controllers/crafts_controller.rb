@@ -34,6 +34,20 @@ class CraftsController < ApplicationController
   	end
   end
 
+  def search
+    if params[:search].blank?
+      flash[:nothing] = "You searched for nothing!"
+      redirect_to crafts_path
+    else
+      @crafts = Craft.search(params)
+    # elsif !params[:search].blank?
+    #   @crafts = Craft.search(params)
+    # else
+    #   flash[:no_match] = "Sorry! No match found."
+    #   redirect_back(fallback_location: crafts_path)
+    end
+  end
+
   def destroy 
   	@craft = Craft.find(params[:id])
   	@craft.destroy
