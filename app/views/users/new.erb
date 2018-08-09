@@ -1,45 +1,63 @@
-<h2>Sign Up</h2>
+<div class="container-fluid" style="padding-bottom: 2%; padding-left: 2%; padding-right: 2%;">
 
-<%= form_with scope: @user, url: users_path, local: true do |f| %>
+	<h2 class="text-center">Sign Up</h2>
 
-	<!-- print errors -->
-	<% if @user.errors.any? %>
-	<h4>
-		<%= pluralize(@user.errors.count, "error") %>
-		prohibited from creating an account:
-	</h4>
-	<p>
-		<ul>
-			<% @user.errors.full_messages.each do |message| %>
-				<li>
-					<%= message %>
-				</li>
+	<%= form_with scope: @user, url: users_path, local: true do |f| %>
+		<div style="width: 60%; margin: auto;">
+			<!-- print errors -->
+			<% if @user.errors.any? %>
+			<h5>
+				<%= pluralize(@user.errors.count, "error") %>
+				prohibited from creating an account:
+			</h5>
+			<p>
+				<ul>
+					<% @user.errors.full_messages.each do |message| %>
+						<li>
+							<%= message %>
+						</li>
+					<% end %>
+				</ul>
+			</p>
 			<% end %>
-		</ul>
-	</p>
+			<!-- end of print errors -->
+		</div>
+
+		<form>
+			<div style="width: 60%; margin: auto;">
+				<div class="form-group row mt-4">
+					<%= f.label :username, class:"col-sm-2 col-form-label" %>
+					<div class="col-sm-10">
+						<%= f.text_field :username, placeholder: 'Insert a Username', :required => true, class:"form-control" %>
+					</div>
+				</div>
+
+				<div class="form-group row mt-4">
+					<%= f.label :email, class:"col-sm-2 col-form-label" %>
+					<div class="col-sm-10">
+						<%= f.text_field :email, placeholder: 'Insert your Email', :required => true, class:"form-control" %>
+					</div>
+				</div>
+
+				<div class="form-group row mt-4">
+					<%= f.label :password, class:"col-sm-2 col-form-label" %>
+					<div class="col-sm-10">
+						<%= f.password_field :password, placeholder: 'Create a Password', :required => true, class:"form-control" %>
+					</div>
+				</div>
+
+				<div class="form-group row mt-4">
+					<%= f.label ".Re-enter password", class:"col-sm-2 col-form-label" %>
+					<div class="col-sm-10 mt-2">
+						<%= f.password_field :password_confirmation, placeholder: 'Confirm Password', :required => true, class:"form-control" %>
+					</div>
+				</div>
+
+				<div class="mt-2 text-center">
+					<%= f.submit 'Create Account', class:"btn-sm btn-outline-dark" %>
+				</div>
+			</div>
+		</form>
 	<% end %>
-	<!-- end of print errors -->
 
-	<h3>
-		Username: 
-		<%= f.text_field :username, placeholder: 'Input a Username' %>
-	</h3>
-
-	<h3>
-		Email:
-		<%= f.text_field :email, placeholder: 'Input your Email' %>
-	</h3>
-
-	<h3>
-		Password:
-		<%= f.password_field :password, placeholder: 'Create a Password' %>
-	</h3>
-
-	<h3>
-		Re-enter password:
-		<%= f.password_field :password_confirmation, placeholder: 'Confirm Password' %>
-	</h3>
-
-	<%= f.submit 'Create Account' %>
-
-<% end %>
+</div>

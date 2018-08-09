@@ -1,24 +1,38 @@
-<h2>Sign In</h2>
+<div class="container-fluid" style="padding-bottom: 2%; padding-left: 2%; padding-right: 2%;">
 
-<!-- use form_tag because we are obtaining somthing from the database and not saving anything -->
-<%= form_tag sessions_path do %>
+	<h2 class="text-center">Sign In</h2>
+	
+		<%= form_with url: sessions_path, local:true do |f| %>
+			<form>
+				<div style="width: 60%; margin: auto;">
+					<div class="form-group row mt-4">
+						<%= f.label :username, class:"col-sm-2 col-form-label" %>
+						<div class="col-sm-10">
+							<%= f.text_field :username, placeholder: 'Insert your Username', :required => true, class:"form-control" %>
+						</div>
+					</div>
 
-	<h3>
-		Username:
-		<%= text_field_tag :username, nil, placeholder: 'Insert your Username' %>
-	</h3>
+					<div class="form-group row mt-4">
+						<%= f.label :password, class:"col-sm-2 col-form-label" %>
+						<div class="col-sm-10">
+							<%= f.password_field :password, placeholder: 'Insert Password', :required => true, class:"form-control" %>
+						</div>
+					</div>
+				</div>
 
-	<h3>
-		Password:
-		<%= password_field_tag :password, nil, placeholder: 'Insert Password' %>
-	</h3>
+				<div class="text-center" style="width: 100%">
+					<div>
+						<%= f.check_box :remember_me %> 
+						<%= f.label :remember_me, class:"col-sm-2 col-form-label" %>
+					</div>
 
-	<p>
-		<%= check_box_tag :remember_me, 1, params[:remember_me] %>
-		<%= label_tag :remember_me %>
-	</p>
+					<div class="mt-2">
+						<%= f.submit "Sign In", class:"btn-sm btn-outline-dark" %>
+					</div>
+				</div>
+			</form>
+		<% end %>
+	
 
-	<%= submit_tag 'Sign In' %>
-
-<% end %>
+</div>
 

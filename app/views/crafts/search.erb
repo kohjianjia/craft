@@ -2,13 +2,18 @@
 
 	<h2 class="text-center">Search Results</h2>
 
-	<div class="row">
+	<div class="row mt-3">
 		<% @crafts.order("date DESC").each do |craft| %>
 			<div class="col-12 col-sm-12 col-md-12 col-lg-4 mt-2 mb-4">
 				<div class="card shadow-lg">
 					<div class="card-body text-center">
 						<p class="card-text"><small class="text-muted"><%= craft.date.strftime("%d/%m/%Y") %> • <%= craft.start_time %> to <%= craft.end_time %></small></p>
-						<h5 class="card-title"><a class="text-dark effect-shine text-uppercase" style="text-decoration: none;" href="/crafts/<%= craft.id %>"><strong><%= craft.title %></a></strong></h5>
+						<h5 class="card-title"><a class="text-dark effect-shine text-uppercase" style="text-decoration: none;" href="/crafts/<%= craft.id %>">
+							<strong><%= craft.title %></a></strong>
+							<% if craft.availability == false %>
+								<img src="https://www.thedoggurus.com/wp-content/uploads/2016/05/UhOh-png-web.png" style="height: 21px; width: 40px;">
+							<% end %>
+						</h5>
 						<p class="card-text"><small class="text-muted text-uppercase"><%= craft.craft_type %></small></p>
 					</div>
 					<img class="card-img-top" src="https://acpknighttimes.com/wp-content/uploads/2017/08/Art.jpg" alt="Card image cap">
