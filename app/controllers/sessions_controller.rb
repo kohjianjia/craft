@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   def index
-    redirect_to homepage_path
+    redirect_to root_path
   end
 
   def new
@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
   		# start a session
   			# if user 1 signs in, user 1 starts his session
   		session[:username] = user.id
-  		redirect_to homepage_path, notice: "Welcome back, #{user.username}!"
+  		redirect_to root_path, notice: "Welcome back, #{user.username}!"
   	else
   		render 'new', alert: "Invalid Username and/or Password."
   	end

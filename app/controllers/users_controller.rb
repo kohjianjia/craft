@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 		if @user.save
 			# sign in user immediately after sign up
 			session[:username] = @user.id
-			redirect_to homepage_path, notice: "Hello, #{@user.username}! You've successfully created an account."
+			redirect_to root_path, notice: "Hello, #{@user.username}! You've successfully created an account."
 		else 
 			render 'new'
 		end

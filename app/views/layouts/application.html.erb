@@ -13,11 +13,7 @@
 
     <nav class="navbar sticky-top navbar-expand-lg navbar-light" style="background-color: #fff; padding:1.5%; border-bottom: #f9f9f9;">
       <div class="container">
-        <% if current_user %>
-          <a class="navbar-brand effect-shine" href="/homepage"><strong>CRAFTER</strong></a>
-        <% else %>
-          <a class="navbar-brand" href="/">CRAFTER</a>
-        <% end %>
+        <a class="navbar-brand effect-shine" href="/"><strong>CRAFTER</strong></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="fa fa-heart-o"></span>
         </button>
@@ -37,6 +33,9 @@
                 <a class="nav-link" href="/crafts/new">Host a Workshop!</a>
               </li>
               <li class="nav-item">
+                  <%= link_to 'FAQ', faq_path, class:"nav-link" %>
+                </li>
+              <li class="nav-item">
                 <%= link_to 'Sign Out', session_path('id'), method: :delete, class:"nav-link" %>
               </li>
             <% else %>
@@ -44,9 +43,15 @@
                 <li class="nav-item">
                   <%= link_to 'Sign Up', sign_up_path, class:"nav-link" %>
                 </li>
+                <li class="nav-item">
+                  <%= link_to 'FAQ', faq_path, class:"nav-link" %>
+                </li>
               <% elsif request.path_info == '/sign_up' %>
                 <li class="nav-item">
                   <%= link_to 'Sign In', sign_in_path, class:"nav-link" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to 'FAQ', faq_path, class:"nav-link" %>
                 </li>
               <% else %>
                 <li class="nav-item">
@@ -54,6 +59,9 @@
                 </li>
                 <li class="nav-item">
                   <%= link_to 'Sign In', sign_in_path, class:"nav-link" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to 'FAQ', faq_path, class:"nav-link" %>
                 </li>
               <% end %>
             <% end %>
@@ -71,8 +79,6 @@
           </ul>
           <!-- search bar starts here -->
           <div class="form-inline my-2 my-lg-0">
-
-
             <%= form_with url: search_crafts_path, method: :get, id: "workshop_search", local:true do |f| %>
               <input name="find_word" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="height: 32px;" id="find_word"> 
               <button class="btn btn-outline-secondary my-2 my-sm-0 fa fa-search" type="submit"></button>

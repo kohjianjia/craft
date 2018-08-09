@@ -45,7 +45,12 @@
 		<hr />
 		<div class="card-body text-center">
 			<h6 class="card-text">
-				To book or for more information, please contact <%= @craft.host_name %> through phone <%= @craft.phone %> or email <a href="mailto:<%= @craft.user.email %>"><%= @craft.user.email %></a>.
+				<% if @craft.availability == false %>
+					For more information,
+				<% else %>
+					To book or for more information,
+				<% end %>
+				please contact <%= @craft.host_name %> through phone <%= @craft.phone %> or email <a href="mailto:<%= @craft.user.email %>"><%= @craft.user.email %></a>.
 			</h6>
 		</div>
 		<div class="text-center">
