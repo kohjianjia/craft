@@ -1,6 +1,8 @@
 class CraftsController < ApplicationController
 
-  before_action :ajax_search, only: [:search]
+  before_action :create_rights, only: [:new, :create, :update, :edit, :show]
+  before_action :check_update_rights, only: [:update, :edit]
+  before_action :specific_search, only: [:search]
 
   def index
   	@crafts = Craft.all
@@ -41,6 +43,14 @@ class CraftsController < ApplicationController
   	end
   end
 
+  def save_location
+    @craft = Craft.find(params[:id])
+    if @craft.update(current_location)
+      flash[:location_saved] = "Location saved!"
+      render json: true
+    end
+  end
+
   def search
     # if params[:search].blank?
     if params[:find_word].blank?
@@ -70,10 +80,29 @@ class CraftsController < ApplicationController
   	params.require(:craft).permit(:title, :host_name, :craft_type, :level, :price, :date, :start_time, :end_time, :city, :venue, :description, :inclusive, :phone, :max_participant, :availability, :user_id)
   end
 
-  def ajax_search
+  def create_rights
+    if !current_user
+      flash[:not_account] = "Please sign in or sign up to proceed."
+      redirect_to sign_in_path
+    end
+  end
+
+  def check_update_rights
+    @craft = Craft.find(params[:id])
+    if current_user.id != @craft.user_id || current_user.admin? 
+      flash[:denied] = "Access denied!"
+      redirect_to crafts_path
+    end
+  end
+
+  def specific_search
     @crafts = Craft.all
-    #                  search is from the form at applicaition.html.erb where name="search"
+    #                  search is from the form at application.html.erb where name="find_word"
     @crafts = @crafts.search(params[:find_word]) if params[:find_word].present?
+  end
+
+  def current_location
+    params.permit(:latitude, :longitude)
   end
 end
 

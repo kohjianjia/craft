@@ -23,7 +23,4 @@ class ApplicationController < ActionController::Base
 		end
 	end
 
-	def admin_authorize
-		redirect_to sign_in_path, alert: "Access denied!" unless current_user.admin
-	end
 end

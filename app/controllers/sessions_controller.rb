@@ -14,7 +14,8 @@ class SessionsController < ApplicationController
   		session[:username] = user.id
   		redirect_to root_path, notice: "Welcome back, #{user.username}!"
   	else
-  		render 'new', alert: "Invalid Username and/or Password."
+      flash[:wrong] = 'Invalid Username and/or Password.'
+  		render 'new'
   	end
   end
 

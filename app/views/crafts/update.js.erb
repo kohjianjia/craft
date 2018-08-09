@@ -1,8 +1,11 @@
 <% if @craft.availability %>
-	$('#<%= @craft.id %>').html("••• This workshop is still available for booking •••");
+	$('#1<%= @craft.id %>').html("");
+	$('#2<%= @craft.id %>').html("••• This workshop is still available for booking •••");
 	console.log('#<%= @craft.title %> is available for booking.');
 <% else %>
-	$('#<%= @craft.id %>').html("••• Sorry! This workshop is no longer available for booking •••");
+	$('#2<%= @craft.id %>').html("");
+	$('#1<%= @craft.id %>').html("");
+	$('#1<%= @craft.id %>').append('<img src="https://www.thedoggurus.com/wp-content/uploads/2016/05/UhOh-png-web.png" style="height: 21px; width: 40px;">');
 	console.log('#<%= @craft.title %> is no longer available for booking.');
 <% end %>
 
