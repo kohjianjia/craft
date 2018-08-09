@@ -1,14 +1,29 @@
-<h2>Admin Page</h2>
+<div class="container-fluid" >
+	<h2 class="text-center">Admin Page</h2>
 
-<h4>Total number of users: <%= @users.all.count %></h4>
+	<h4 class="text-center">Total number of users: <%= @users.all.count %></h4>
 
-<% i = 1 %>
-<% @users.order("username ASC").each do |user| %>
-	<h4>
-		<%= i.to_s %>.
-		<a href="/users/<%= user.id %>"><%= user.username %></a>
-		<br />
-		<%= user.email %>
-	</h4>
-	<% i += 1 %>
-<% end %>
+	<hr />
+
+	<div class="row">
+		<% i = 1 %>
+		<% @users.order("username ASC").each do |user| %>
+			<div class="col-12 col-sm-12 col-md-6 col-lg-4 mt-2 mb-4">
+				<div class="card shadow-lg" style="border: none">
+					<div class="card-body text-center">
+					<h4>
+						<small><%= i.to_s %>.</small>
+						<br />
+						<a class="text-dark effect-shine" style="text-decoration: none;" href="/users/<%= user.id %>"><%= user.username %></a>
+						<br />
+						<small>User ID: <%= user.id %></small>
+						<br />
+						<small><a href="mailto:<%= user.email %>"><%= user.email %></a></small>
+					</h4>
+					</div>
+				</div>
+			</div>
+			<% i += 1 %>
+		<% end %>
+	</div>
+</div>

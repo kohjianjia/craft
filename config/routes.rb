@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 		end
 	end
 
+	post '/crafts/:id/save_location' => 'crafts#save_location', as: 'save_location'
+
 	resources :sessions, controller: "sessions", only: [:create, :destroy]
 	get "/sign_in" => "sessions#new", as: "sign_in"
 	

@@ -7,7 +7,7 @@
 		<% end %>
 	</h2>
 
-	<h3 class="text-center">Email: <%= @user.email %></h3>
+	<h4 class="text-center">Email: <a href="mailto:<%= @user.email %>"><%= @user.email %></a></h4>
 
 	<hr />
 
@@ -23,7 +23,7 @@
 		<% @user.crafts.order("date DESC").each do |craft| %>
 			<!--                                                       id added to div for destroy-ajax -->
 			<div class="col-12 col-sm-12 col-md-12 col-lg-4 mt-2 mb-4" id="<%= craft.id %>">
-				<div class="card shadow-lg">
+				<div class="card shadow-lg" style="border: none;">
 					<div class="card-body text-center">
 						<p class="card-text"><small class="text-muted"><%= craft.date.strftime("%d/%m/%Y") %> • <%= craft.start_time %> to <%= craft.end_time %></small></p>
 						<h5 class="card-title"><a class="text-dark effect-shine text-uppercase" style="text-decoration: none;" href="/crafts/<%= craft.id %>">

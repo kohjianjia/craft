@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-	before_action :admin_authorize, only: [:index]
+	before_action :admin_only, only: [:index]
+	before_action :check_rights, only: [:index]
 
 	def index
 		@users = User.all
@@ -27,5 +28,19 @@ class UsersController < ApplicationController
 	private
 	def user_params
 		params.require(:user).permit(:username, :email, :password, :password_confirmation)
+	end
+
+	def admin_only
+		if !current_user
+		  flash[:not_access] = "Access denied!"
+		  redirect_to sign_in_path
+		end
+	end
+
+	def check_rights 
+		if !current_user.admin
+			flash[:denied] = "Access denied! Admin only."
+			redirect_to crafts_path
+		end
 	end
 end

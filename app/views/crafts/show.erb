@@ -3,11 +3,12 @@
 		<div class="card-body text-center">
 			<h5 class="card-title text-dark text-uppercase">
 				<strong><%= @craft.title %></strong>
+				<span id="1<%= @craft.id %>"></span>
 				<% if @craft.availability == false %>
 					<img src="https://www.thedoggurus.com/wp-content/uploads/2016/05/UhOh-png-web.png" style="height: 21px; width: 40px;">
 				<% end %>
 			</h5>
-			<h6 class="card-text"><span id="<%= @craft.id %>"></span></small></h6>
+			<h6><span id="2<%= @craft.id %>"></span></h6>
 			<% if @craft.user.id == current_user.id || current_user.admin? %>
 				<h6>
 					<%= form_with scope: :craft, method: :patch, url: craft_path, remote: true do |f| %>
@@ -25,7 +26,17 @@
 					<% end %>
 				</h6>
 			<% end %>
-			<h6 class="card-text text-uppercase"><small>Instructed by <%= @craft.host_name %></small></h6>
+			<% if @craft.user.id == current_user.id && @craft.latitude == nil && @craft.longitude == nil %>
+				<div id="mark_location">
+					<h6>
+						<small>Save your location to enable your workshop to be shown on the map in <strong>CRAFTER</strong>!</small>
+					</h6> 
+					<h6>
+						<%= link_to 'Save my location', save_location_path(@craft), class: "btn btn-sm btn-outline-dark" %>
+					</h6>
+				</div>
+			<% end %>
+			<h6 class="card-text text-uppercase"><small>Instructed by <strong><a class="text-dark effect-shine text-uppercase" style="text-decoration: none;" href="/users/<%= @craft.user_id %>"><%= @craft.host_name %></a></strong></small></h6>
 		</div>
 		<img class="card-img-bottom" src="https://acpknighttimes.com/wp-content/uploads/2017/08/Art.jpg" alt="Card image cap">
 		<div class="card-body text-center">
@@ -66,3 +77,57 @@
 		<%= link_to 'ALL WORKSHOPS', crafts_path, class:"btn btn-outline-dark btn-sm" %>
 	</div>
 </div>
+
+<% if @craft.user.id == current_user.id && @craft.latitude == nil && @craft.longitude == nil %>
+	<script>
+
+    	$(document).ready(function(){
+
+			var pos = "";
+
+		    $('#mark_location').hide();
+
+		    // HTML5 geolocation
+		    if (navigator.geolocation) {
+		      navigator.geolocation.getCurrentPosition(function(position) {
+		        pos = {
+		          latitude: position.coords.latitude,
+		          longitude: position.coords.longitude,
+		          authenticity_token: AUTH_TOKEN,
+		        };
+
+				$('#mark_location').show();
+		        console.log(pos)
+				$('#mark_location').on('click', function(e){
+					e.preventDefault();
+					console.log(this)
+
+					$.ajax({
+						url: '/crafts/<%= @craft.id %>/save_location',
+						method: "POST",
+						data: pos,
+						dataType: 'json',
+						success: function(data){
+						  // refactor here (insert message instead of flash in events_controller)
+						  location.reload();
+						}
+					});
+				})
+
+		      });
+		    } else {
+		      // Browser doesn't support Geolocation
+		      alert('Geolocation is not supported for this Browser/OS version yet.');
+		    }
+      
+  		});
+
+    </script>
+<% end %>
+
+
+
+
+
+
+

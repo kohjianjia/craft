@@ -5,13 +5,18 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <%= javascript_tag "var AUTH_TOKEN = '#{form_authenticity_token}';" if protect_against_forgery? %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+<!-- supposed to be javascript_include_tag 'application', 'data-turbolinks-track': 'reload' -->
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <!-- a meta tag for map -->
+    <%= tag :meta, name: 'google_map', content: ENV['YOUR_API_KEY'] %>
   </head>
 
   <body>
 
-    <nav class="navbar sticky-top navbar-expand-lg navbar-light" style="background-color: #fff; padding:1.5%; border-bottom: #f9f9f9;">
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light" style="background-color: rgba(255, 255, 255, 0.95); padding:1.5%;">
       <div class="container">
         <a class="navbar-brand effect-shine" href="/"><strong>CRAFTER</strong></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -79,8 +84,8 @@
           </ul>
           <!-- search bar starts here -->
           <div class="form-inline my-2 my-lg-0">
-            <%= form_with url: search_crafts_path, method: :get, id: "workshop_search", local:true do |f| %>
-              <input name="find_word" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="height: 32px;" id="find_word"> 
+            <%= form_with url: search_crafts_path, method: :get, local:true do |f| %>
+              <input name="find_word" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="height: 32px;"> 
               <button class="btn btn-outline-secondary my-2 my-sm-0 fa fa-search" type="submit"></button>
             <% end %>
           </div> 
