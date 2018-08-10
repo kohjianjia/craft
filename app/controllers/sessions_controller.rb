@@ -7,8 +7,8 @@ class SessionsController < ApplicationController
   end
 
   def create
-  	user = User.find_by_username(params[:username])
-  	if user && user.authenticate(params[:password])
+    user = User.find_by_username(params[:username])
+    if user && user.authenticate(params[:password])
   		# start a session
   			# if user 1 signs in, user 1 starts his session
   		session[:username] = user.id

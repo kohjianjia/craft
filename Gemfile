@@ -39,6 +39,8 @@ gem 'bootstrap', '~> 4.1', '>= 4.1.3'
 gem 'sprockets-rails', '~> 3.2', '>= 3.2.1' 
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.4'
 
+gem 'rspec-rails', '~> 3.8'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -61,7 +63,7 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15', '< 4.0'
+  gem 'capybara'
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'

@@ -17,10 +17,4 @@ class ApplicationController < ActionController::Base
 	# enable us to use current_user within Views
 	helper_method :current_user
 
-	def authorize
-		if current_user.nil?
-			redirect_to sign_up_path, alert: 'Please Sign In or Sign Up to proceed'
-		end
-	end
-
 end
