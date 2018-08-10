@@ -10,8 +10,6 @@
 <!-- supposed to be javascript_include_tag 'application', 'data-turbolinks-track': 'reload' -->
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-    <!-- a meta tag for map -->
-    <%= tag :meta, name: 'google_map', content: ENV['YOUR_API_KEY'] %>
   </head>
 
   <body>
@@ -82,10 +80,11 @@
               </div>
             </li>  -->
           </ul>
+          
           <!-- search bar starts here -->
           <div class="form-inline my-2 my-lg-0">
             <%= form_with url: search_crafts_path, method: :get, local:true do |f| %>
-              <input name="find_word" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="height: 32px;"> 
+              <input name="search_workshop" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="height: 32px;"> 
               <button class="btn btn-outline-secondary my-2 my-sm-0 fa fa-search" type="submit"></button>
             <% end %>
           </div> 

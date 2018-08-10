@@ -1,8 +1,7 @@
 class CraftsController < ApplicationController
 
   before_action :create_rights, only: [:new, :create, :update, :edit, :show]
-  before_action :check_update_rights, only: [:update, :edit]
-  before_action :specific_search, only: [:search]
+  before_action :check_update_rights, only: [:update, :edit] 
 
   def index
   	@crafts = Craft.all
@@ -36,7 +35,6 @@ class CraftsController < ApplicationController
       respond_to do |format|
         format.html { redirect_to craft_path(@craft) }
         format.js
-        # format.json { render json: @craft }
       end
   	else
   		render 'edit'
@@ -51,12 +49,12 @@ class CraftsController < ApplicationController
     end
   end
 
-  def search
-    # if params[:search].blank?
-    if params[:find_word].blank?
+  def search 
+    @craft = Craft.search_workshop(params)
+    if params[:search_workshop].blank?
       flash[:nothing] = "You searched for nothing!"
       redirect_to crafts_path
-    elsif !@crafts.empty?
+    elsif !@craft.empty?
       render 'search'
     else
       flash[:no_match] = "Sorry! No match found."
@@ -89,16 +87,10 @@ class CraftsController < ApplicationController
 
   def check_update_rights
     @craft = Craft.find(params[:id])
-    if current_user.id != @craft.user_id || current_user.admin? 
+    if current_user.id != @craft.user_id && !current_user.admin?
       flash[:denied] = "Access denied!"
       redirect_to crafts_path
     end
-  end
-
-  def specific_search
-    @crafts = Craft.all
-    #                  search is from the form at application.html.erb where name="find_word"
-    @crafts = @crafts.search(params[:find_word]) if params[:find_word].present?
   end
 
   def current_location

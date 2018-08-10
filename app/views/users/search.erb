@@ -1,20 +1,11 @@
 <div class="container-fluid" >
-	<h2 class="text-center">Admin Page</h2>
-
-	<h4 class="text-center">Total number of users: <%= @users.all.count %></h4>
+	<h2 class="text-center">Admin Search Page</h2>
 
 	<hr />
 
-    <div class="form-inline my-2 my-lg-0">
-	    <%= form_with url: search_users_path, method: :get, local:true do |f| %>
-	        <input name="search_user" class="form-control mr-sm-2" type="search" placeholder="Username search" aria-label="Search" style="height: 32px;"> 
-	        <button class="btn btn-outline-secondary my-2 my-sm-0 mr-5 fa fa-search" type="submit"></button>
-	    <% end %>
-	</div> 
-
 	<div class="row">
 		<% i = 1 %>
-		<% @users.order("username ASC").each do |user| %>
+		<% @user.each do |user| %>
 			<div class="col-12 col-sm-12 col-md-6 col-lg-4 mt-2 mb-4">
 				<div class="card shadow-lg" style="border: none">
 					<div class="card-body text-center">
