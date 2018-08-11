@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
-	before_action :admin_only, only: [:index, :search]
+	
 	before_action :check_rights, only: [:index, :search, :show]
+	before_action :admin_only, only: [:index, :search]
 
 	def index
 		@users = User.all
@@ -51,7 +52,7 @@ class UsersController < ApplicationController
 	end
 
 	def admin_only
-		if !current_user.admin || !current_user
+		if !current_user.admin
 			flash[:denied] = "Access denied! Admin only."
 			redirect_to crafts_path
 		end
