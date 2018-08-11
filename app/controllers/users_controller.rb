@@ -51,7 +51,7 @@ class UsersController < ApplicationController
 	end
 
 	def admin_only
-		if !current_user.admin
+		if !current_user.admin || !current_user
 			flash[:denied] = "Access denied! Admin only."
 			redirect_to crafts_path
 		end
