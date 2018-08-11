@@ -31,12 +31,12 @@ ActiveRecord::Base.transaction do
   50.times do 
     craft['title'] = Faker::App.name
     craft['host_name'] = Faker::Name.name
-    craft['craft_type'] = ["Embroidery", "Macrame", "Knitting", "Crochet", "Leather crafting", "Batik", "Origami", "Bookbinding", "Calligraphy", "Wood carving"].sample
+    craft['craft_type'] = ["embroidery", "macrame", "knitting", "crochet", "leather crafting", "batik", "origami", "bookbinding", "calligraphy", "wood carving"].sample
     craft['level'] = ["Beginner", "Intermediate", "Advanced"].sample
     craft['price'] = rand(100..1000)
     craft['date'] = ["18th August 2018", "19th August 2018", "25th August 2018", "26th August 2018", "1st September 2018", "2nd September 2018", "8th September 2018", "9th September 2018"].sample
-    craft['start_time'] = ["11am"].sample
-    craft['end_time'] = ["4pm"].sample
+    craft['start_time'] = ["11am", "12pm"].sample
+    craft['end_time'] = ["4pm", "5pm"].sample
     craft['city'] = Faker::Address.city
     craft['venue'] = Faker::Address.full_address
     craft['latitude'] = Faker::Address.latitude
