@@ -16,7 +16,8 @@ class UsersController < ApplicationController
 		if @user.save
 			# sign in user immediately after sign up
 			session[:username] = @user.id
-			redirect_to root_path, notice: "Hello, #{@user.username}! You've successfully created an account."
+			flash[:hello] = "Hello, #{@user.username}! You've successfully created an account."
+			redirect_to root_path 
 		else 
 			render 'new'
 		end
@@ -46,14 +47,14 @@ class UsersController < ApplicationController
 
 	def check_rights
 		if !current_user
-		  flash[:not_access] = "Access denied!"
+		  flash[:no_access] = "Access denied!"
 		  redirect_to sign_in_path
 		end
 	end
 
 	def admin_only
 		if !current_user.admin
-			flash[:denied] = "Access denied! Admin only."
+			flash[:denied_again] = "Access denied! Admin only."
 			redirect_to crafts_path
 		end
 	end
