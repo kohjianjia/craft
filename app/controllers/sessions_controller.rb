@@ -12,7 +12,8 @@ class SessionsController < ApplicationController
   		# start a session
   			# if user 1 signs in, user 1 starts his session
   		session[:username] = user.id
-  		redirect_to root_path, notice: "Welcome back, #{user.username}!"
+      flash[:welcome] = "Welcome back, #{user.username}!"
+  		redirect_to root_path
   	else
       flash[:wrong] = 'Invalid Username and/or Password.'
   		render 'new'
@@ -22,6 +23,7 @@ class SessionsController < ApplicationController
   def destroy
     # when the session is destroyed, it becomes empty
     session[:username] = nil
-    redirect_to sign_in_path, notice: "You've signed out successfully."
+    flash[:logout] = "You've successfully signed out."
+    redirect_to sign_in_path
   end
 end
