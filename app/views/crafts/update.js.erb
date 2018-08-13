@@ -1,4 +1,5 @@
 <% if @craft.availability %>
+	// .html: Get the HTML contents of the first element in the set of matched elements or set the HTML contents of every matched element.
 	$('#1<%= @craft.id %>').html("");
 	$('#2<%= @craft.id %>').html("••• This workshop is still available for booking •••");
 	console.log('#<%= @craft.title %> is available for booking.');

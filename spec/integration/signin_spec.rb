@@ -1,6 +1,7 @@
 require 'rails_helper'
 require 'byebug'
 
+# descriptive acceptance tests
 describe "the signin process", type: :feature do
   before :each do
     User.create(username: 'hello1', password: 'uiop7890', email:'hello1@email.com')
