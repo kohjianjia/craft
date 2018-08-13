@@ -11,8 +11,6 @@ Rails.application.routes.draw do
 	resources :sessions, controller: "sessions", only: [:destroy]
 	post "/sign_in" => "sessions#create", as: "sign_in_create"
 	get "/sign_in" => "sessions#new", as: "sign_in"
-	
-	get "/faq" => "homepage#faq", as: "faq"
 
 	resources :users, controller: "users", only: [:create, :edit, :update, :show, :index] do
 		collection do
@@ -23,7 +21,7 @@ Rails.application.routes.draw do
 	get "/sign_up" => "users#new", as: "sign_up"
 
 	root 'homepage#index'
+	get "/faq" => "homepage#faq", as: "faq"
 	# For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-	post "/test" => "homepage#test"
 end

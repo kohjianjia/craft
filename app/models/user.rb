@@ -15,4 +15,8 @@ class User < ApplicationRecord
 	end
 
 	scope :search, -> (y) { where("username LIKE ?", "%#{y}%") }
+	# # equivalent to
+	# def self.search(y)
+	# 	where("username LIKE ?", "%#{y}%")
+	# end
 end

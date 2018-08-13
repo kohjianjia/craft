@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
 
 	private
-	# if the session is successfully created, assign this instance variable
+	# this makes the signed in user available to all controllers because this is application_controller
 	def current_user
 		# if session[:username]
 			# if @curent_user 
@@ -11,6 +11,8 @@ class ApplicationController < ActionController::Base
 			# end
 		# end
 		# thus, ||= means or equal
+		# This will return the current user, if they exist
+			# if the session is successfully created, assign this instance variable
 		@curent_user ||= User.find(session[:username]) if session[:username]
 	end
 
